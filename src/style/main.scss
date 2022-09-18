@@ -1,0 +1,612 @@
+@import "~bootstrap/scss/bootstrap";
+
+$grey : rgb(102, 102, 102);
+$dark-mode-grey: rgb(38, 38, 38);
+$light-grey: rgb(204, 204, 204);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+    list-style-type: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+.non-bootstrap-container {
+    max-width: 992px;
+    margin: 0 auto;
+}
+
+%input {
+    padding: 1rem;
+    font-size: 1.6rem;
+    width: 100%;
+    outline: none;
+    border: 1px solid $light-grey;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+    &:focus {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 10px;
+    }
+}
+
+.dark-mode-bg {
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+}
+
+//Login 
+
+.login-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    .login-card {
+        text-align: center;
+        width: 35rem;
+        border-radius: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 10px;
+        padding: 3rem;
+        h1{
+            font-size: 3.2rem;
+            font-weight: bold;
+            margin-bottom: 4rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            input {
+                @extend%input;
+                width: 25rem;
+            }
+            button {
+                width: 20rem;
+                font-size: 1.6rem;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+            }
+        }
+    }
+}
+
+// Login Dark Mode
+
+.dark-mode-login-container {
+    .login-card {
+        background-color: $dark-mode-grey;
+        h1{
+            color: white;
+        }
+        form {
+            button {
+                background-color: $grey;
+                border: none;
+            }
+        }
+    }
+}
+
+
+// Header 
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    h1 {
+        font-weight: 700;
+        font-size: 3.2rem;
+        color: $grey;
+    }
+    .user-and-modes {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        #darkmode{
+            display: flex;
+            justify-content: center;
+            .checkbox {
+                opacity: 0;
+                position: absolute;
+            }
+            .label {
+                width: 40px;
+                height: 17px;
+                background-color:#111;
+                display: flex;
+                border-radius:50px;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px;
+                position: relative;
+                transform: scale(1.5);
+                cursor: pointer;
+                .icons {
+                    color: white;
+                }
+                .ball {
+                    width: 13px;
+                    height: 13px;
+                    background-color: white;
+                    position: absolute;
+                    top: 2px;
+                    left: 2px;
+                    border-radius: 50%;
+                    transition: transform 0.2s linear;
+                }
+            }
+            .checkbox:checked + .label .ball{
+                transform: translateX(24px);
+            }
+        }
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            p{
+                font-size: 1.8rem;
+                margin-bottom: 0rem;
+                font-weight: bold;
+            }
+            .user-icon {
+                font-size: 1.6rem;
+                padding: 1rem;
+                border-radius: 50%;
+                background-color: $light-grey;
+                color: white;
+            }
+        }
+    }
+}
+.header-bottom {
+    border-bottom: 1px solid $light-grey;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 10px;
+}
+
+// Header Dark Mode
+
+.dark-mode-header {
+    background-color: $dark-mode-grey;
+    .header {
+        h1 {
+            color: white;
+        }
+        #darkmode{
+            .label {
+                background-color:white;
+                cursor: pointer;
+                .icons {
+                    color: black;
+                }
+                .ball {
+                    background-color: black;
+                }
+            }
+        }
+        .user {
+            p{
+                color: white;
+            }
+        }
+    }
+}
+.dark-mode-header-bottom {
+    border: none;
+}
+  
+
+// Add Task 
+
+.add-task-form {
+    margin-top: 4rem;
+    border: 1px solid $light-grey;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        input {
+            @extend%input;
+            margin-bottom: 1rem;
+        }
+        .add-button-and-error {
+            margin-top: 1.6rem;
+            align-self: flex-end;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            .error {
+                font-size: 1.6rem;
+                font-weight: bold;
+            }
+            .addTodoError {
+                font-size: 1.6rem;
+                color: red;
+                font-weight: bold;
+            }
+            p {
+                margin-bottom: 0rem;
+            }
+            button {
+                border-radius: 1rem;
+                font-size: 1.6rem;
+                width: 15rem;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+            }
+        }
+    }
+}
+
+//Add Task Dark Mode
+
+.dark-mode-add-task-form {
+    background-color: $dark-mode-grey;
+    border: none;
+    form {
+        .add-button-and-error {
+            button {
+                background-color: $grey;
+                border: none;
+            }
+        }
+    }
+}
+
+// Sections
+
+.card {
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+    .card-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1rem 1rem 2rem;
+        button {
+            font-size: 1.6rem;
+            width: 15rem;
+            border-radius: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+        }
+    }
+}
+
+// Sections Dark Mode
+
+.dark-mode-card {
+    background-color: $dark-mode-grey;
+    .card-header {
+        button {
+            background-color: $grey;
+            border: none;
+            color: white;
+        }
+    }
+}
+
+// Tasks
+
+.tasks {
+    width: 100%;
+    height: 40rem;
+    margin-top: 2rem;
+    border: 1px solid $light-grey;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+    padding: 2rem;
+    overflow: scroll;
+    overflow-x: hidden;
+    ul {
+        width: 100%;
+        padding-left: 0rem;
+        .get-todo-loading {
+            width: 100%;
+            text-align: center;
+            .get-todo-loading-gif {
+                width: 5rem;
+            }
+        }
+        .getTodos-error {
+            width: 100%;
+            text-align: center;
+            font-size: 1.6rem;
+            color: red;
+        }
+        li {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.6rem;
+            border: 1px solid $light-grey;
+            border-radius: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+            padding: 1rem;
+            margin-bottom: 0.2rem;
+            .task-title {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 0.8rem;
+                span{
+                    &:nth-child(1) {
+                        font-weight: bold;
+                    }
+                }
+            }
+            .completed-check {
+                padding: 0.4rem;
+                border-radius: 50%;
+                font-size: 1.2rem;
+                background-color: green;
+                color: white;
+            }
+            .edit-form {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                input {
+                    @extend%input;
+                    padding: 0.3rem 0.8rem;
+                    width: 25rem;
+                }
+            }
+            .buttons {
+                display: flex;
+                gap: 0.5rem;
+            }
+            .none-buttons {
+                display: none;
+            }
+            .loading-gif {
+                width: 1.1rem;
+            }
+        }
+    }
+}
+
+// Tasks Dark Mode
+
+.dark-mode-tasks {
+    background-color: $dark-mode-grey;
+    border: none;
+    ul {
+        li {
+            background-color: $light-grey;
+            border: none;
+        }
+    }
+}
+
+// Task Left 
+
+.task-left {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    .card {
+        border-radius: 1rem;
+        font-size: 1.6rem;
+        padding: 1rem 2rem;
+        p {
+            margin-bottom: 0rem;
+        }
+    }
+}
+
+// Task Left Dark Mode
+
+.dark-mode-task-left {
+    .card {
+        background-color: $dark-mode-grey;
+        p {
+            margin-bottom: 0rem;
+            color: white;
+        }
+    }
+}
+
+// Tablet Responsive
+
+@media screen and (max-width: 768px){
+    .header {
+        h1 {
+            font-size: 3.2rem;
+        }
+        .logo {
+            width: 2.8rem;
+        }
+    }
+
+    %input {
+        font-size: 1.6rem;
+    }
+    
+    .add-task-form {
+        width: 58rem;
+        form {
+            .add-button-and-error {
+                .error {
+                    font-size: 1.6rem;
+                }
+                button {
+                    font-size: 1.6rem;
+                    width: 15rem;
+                }
+            }
+        }
+    }
+
+    .card {
+        width: 58rem;
+        margin: 0 auto;
+        .card-header {
+            justify-content: flex-start;
+            button {
+                font-size: 1.6rem;
+                width: 15rem;
+            }
+        }
+    }
+    
+    .tasks {
+        width: 58rem;
+        height: 35rem;
+        ul {
+            li {
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                font-size: 1.6rem;
+                padding: 1rem;
+                margin-bottom: 0.6rem;
+                gap: 0.5rem;
+                .task-title {
+                    flex-basis: 0rem ;
+                }
+                .task-detail {
+                    flex-basis: 0rem;
+                }
+                .edit-form {
+                    gap: 0.4rem;
+                    input {
+                        width: 46rem;
+                    }
+                }
+                .buttons {
+                    align-self: flex-end;
+                    gap: 0.5rem;
+                    flex-grow: 0;
+                }
+            }
+        }
+    }
+    .task-left {
+        .card {
+            text-align: center;
+            width: 20rem;
+            font-size: 1.6rem;
+        }
+    }
+}
+
+// Mobile Responsive
+
+@media screen and (max-width: 576px){
+    .header {
+        h1 {
+            font-size: 2.8rem;
+        }
+        .logo {
+            width: 2.4rem;
+        }
+    }
+
+    %input {
+        font-size: 1.4rem;
+    }
+    
+    .add-task-form {
+        width: 35rem;
+        margin-top: 2rem;
+        form {
+            textarea {
+                height: 8rem;
+            }
+            .add-button-and-error {
+                .error {
+                    font-size: 1.4rem;
+                }
+                button {
+                    font-size: 1.4rem;
+                    width: 13rem;
+                }
+            }
+        }
+    }
+
+    .card {
+        margin: 0 auto;
+        width: 35rem;
+        .card-header {
+            justify-content: center;
+            padding: 1rem;
+            button {
+                font-size: 1.4rem;
+                width: 13rem;
+            }
+        }
+    }
+    
+    .tasks {
+        width: 35rem;
+        height: 35rem;
+        padding: 1rem;
+        ul {
+            padding-left: 0rem;
+            li {
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                font-size: 1.4rem;
+                padding: 1rem;
+                margin-bottom: 0.6rem;
+                .task-title {
+                    flex-basis: 0rem ;
+                }
+                .edit-form {
+                    gap: 0.4rem;
+                    input {
+                        width: 24.5rem;
+                    }
+                }
+                .buttons {
+                    align-self: flex-end;
+                    gap: 0.5rem;
+                    flex-grow: 0;
+                }
+            }
+        }
+    }
+    .task-left {
+        .card {
+            text-align: center;
+            width: 15rem;
+            font-size: 1.4rem;
+        }
+    }
+}
