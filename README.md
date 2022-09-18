@@ -1,6 +1,6 @@
 # Todo App
 
-![Live Site](https://6327488241b1715240238e8f--aesthetic-faun-89a547.netlify.app/)
+[Live Site](https://6327488241b1715240238e8f--aesthetic-faun-89a547.netlify.app/)
 
 I've created the todo app using: 
 - React
