@@ -1,5 +1,7 @@
 # Todo App
 
+![Live Site]([/src/screenshots/Screenshot%20(141).png](https://6327488241b1715240238e8f--aesthetic-faun-89a547.netlify.app/))
+
 I've created the todo app using: 
 - React
 - Redux
